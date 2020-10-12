@@ -1,0 +1,40 @@
+*&---------------------------------------------------------------------*
+*& Report  ZSDEMO5
+*&
+*&---------------------------------------------------------------------*
+*& Check boxes on selection screen
+*&
+*&---------------------------------------------------------------------*
+REPORT ZSDEMO5.
+
+PARAMETERS: p_x TYPE i DEFAULT 10 OBLIGATORY,
+            p_y TYPE i DEFAULT 20 OBLIGATORY.
+
+DATA v_z TYPE i.
+
+PARAMETERS: p_c1 as CHECKBOX DEFAULT 'X',
+            p_c2 as CHECKBOX,
+            p_c3 as CHECKBOX DEFAULT 'X',
+            p_c4 as CHECKBOX.
+
+
+START-OF-SELECTION.
+  if p_c1 = 'X'.
+    v_z = p_x + p_y.
+    WRITE: / 'Sum is ', v_z.
+  ENDIF.
+
+  IF p_c2 = 'X'.
+    v_z = p_x - p_y.
+    WRITE: / 'Difference is ', v_z.
+ ENDIF.
+
+  IF p_c3 = 'X'.
+    v_z = p_x * p_y.
+    WRITE: / 'Product is ', v_z.
+  ENDIF.
+
+  IF p_c4 = 'X'.
+    v_z = p_x / p_y.
+    WRITE: / 'Division is ', v_z.
+  ENDIF.

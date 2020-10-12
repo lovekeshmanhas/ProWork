@@ -1,0 +1,60 @@
+*&---------------------------------------------------------------------*
+*& Report  ZSDEMO4
+*&
+*&---------------------------------------------------------------------*
+*& Selection Screen Operations
+*&
+*&---------------------------------------------------------------------*
+REPORT ZSDEMO2.
+
+data v_z TYPE i.
+*PARAMETERS: p_x TYPE i DEFAULT 20,
+*            p_y TYPE i DEFAULT 15.
+SELECTION-SCREEN BEGIN OF BLOCK bk1 WITH FRAME TITLE t1.
+SELECTION-SCREEN BEGIN OF LINE.
+   SELECTION-SCREEN COMMENT 8(20) lb1.
+   PARAMETERS p_x TYPE i DEFAULT 20 OBLIGATORY.
+SELECTION-SCREEN END OF LINE.
+
+SELECTION-SCREEN BEGIN OF LINE.
+   SELECTION-SCREEN COMMENT 8(20) lb2.
+   PARAMETERS p_y TYPE i DEFAULT 15 OBLIGATORY.
+SELECTION-SCREEN END OF LINE.
+SELECTION-SCREEN END OF BLOCK bk1.
+
+SELECTION-SCREEN BEGIN OF BLOCK bk2 WITH FRAME TITLE t2.
+PARAMETERS: p_r1 RADIOBUTTON GROUP grp1,
+            p_r2 RADIOBUTTON GROUP grp1,
+            p_r3 RADIOBUTTON GROUP grp1,
+            p_r4 RADIOBUTTON GROUP grp1,
+            p_r5 RADIOBUTTON GROUP grp1 DEFAULT 'X'.
+SELECTION-SCREEN END OF BLOCK bk2.
+
+START-OF-SELECTION.
+  IF p_r1 = 'X'.
+    v_z = p_x + p_y.
+    WRITE: / 'Sum is ', v_z.
+  ELSEIF p_r2 = 'X'.
+    v_z = p_x - p_y.
+    IF v_z >= 0.
+       WRITE: / 'Difference is ', v_z.
+    ELSE.
+       WRITE: / 'Difference is -' no-gap, v_z no-SIGN LEFT-JUSTIFIED.
+    ENDIF.
+  ELSEIF p_r3 = 'X'.
+    v_z = p_x * p_y.
+    WRITE: / 'Product is ', v_z.
+  ELSEIF p_r4 = 'X'.
+    v_z = p_x / p_y.
+    WRITE: / 'Division is ', v_z.
+  ELSE.
+*    WRITE: / 'None radio button is selected...'.
+*    MESSAGE 'None radio button selected' TYPE 'I'.
+    MESSAGE 'None radio button selected' TYPE 'S'.
+  ENDIF.
+
+INITIALIZATION.
+  lb1 = 'Enter First Number'.
+  lb2 = 'Enter Second Number'.
+  t1 = 'Enter Input Values'.
+  t2 = 'Arithmetic Operation'.

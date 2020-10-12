@@ -1,0 +1,35 @@
+*&---------------------------------------------------------------------*
+*& Report  ZSDEMO1_1
+*&
+*&---------------------------------------------------------------------*
+*& Declaring variables
+*& Display the values of the variables / content
+*& Declaring variable and Generates selection screen for reading user input
+*&---------------------------------------------------------------------*
+REPORT ZSDEMO1_1.
+
+*PARAMETERS p_x TYPE i.
+*PARAMETERS p_y TYPE i.
+
+PARAMETERS: p_x TYPE i DEFAULT 10 OBLIGATORY,
+            p_y TYPE i DEFAULT 20 OBLIGATORY,
+            p_str TYPE string LOWER CASE DEFAULT 'Love'.
+
+DATA v_z type i.
+
+v_z = p_x + p_y.
+
+WRITE: / 'Sum of two numbers is ' COLOR 4, v_z COLOR 5.
+*WRITE: / 'Entered string is ' COLOR 4, p_str COLOR 3.
+
+FORMAT COLOR 6.   " switch on the color 6
+WRITE: / 'Entered String is ', p_str.
+WRITE: / 'Get same color in this block'.
+FORMAT COLOR OFF.  " switch off the color
+
+WRITE: / 'System Fields...'.
+WRITE: / 'Current date is ', sy-datum.   " application server date
+WRITE: / 'Current time is ', sy-uzeit.   " application server time
+WRITE: / 'Current user is ', sy-uname.   " Logged in user
+WRITE: / 'Current program name is ', sy-repid.   " Current Program name
+WRITE: / 'Current page no is ', sy-pagno.   " Current page number

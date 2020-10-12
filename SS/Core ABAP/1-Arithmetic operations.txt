@@ -1,0 +1,51 @@
+*&---------------------------------------------------------------------*
+*& Report  ZSDEMO1
+*&
+*&---------------------------------------------------------------------*
+*&Arithmetic operations
+*&
+*&---------------------------------------------------------------------*
+REPORT ZSDEMO1.
+
+
+*data x type i.
+*data y type i.
+*data z type i.
+
+data: x type i,   " variable declaration
+      y type i,
+      z type i.
+
+*x=10. "syntax error space sensitive
+x = 10.   " initialization
+y = 20.
+z = x + y. " addition
+
+write z.  " display
+*write / 'Sum of two numbers is ',z.   " syntax error
+write: / 'Sum of two numbers is ',z.
+
+write: / 'Sum of two numbers is ',z LEFT-JUSTIFIED.
+write: / 'Sum of two numbers is ',z CENTERED.
+uline.
+uline.
+
+data: v1 type i value 20,  " declaration and initialization
+      v2 type i value 25.
+
+z = v1 + v2.
+write: / 'Sum is ', z.
+uline.
+
+data: v_x type i,
+      v_y type c.
+write: / ' v_x is ', v_x,
+       / ' v_y is ', v_y.
+v_x = 48.
+v_y = 'Lovekesh Manhas'.
+write: / ' v_x is ', v_x,
+       / ' v_y is ', v_y.
+uline.
+data v_z(10) type c.  " array of characters
+v_z = 'Lovekesh'.
+write: / ' v_z is ',v_z.
